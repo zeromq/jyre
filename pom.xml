@@ -8,6 +8,9 @@
   <name>zyre</name>
   <description>framework for proximity-based peer-to-peer applications</description>
   <url>http://zyre.org</url>
+  <properties>
+      <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+  </properties>
   <licenses>
     <license>
       <name>GNU General Lesser Public License (LGPL) version 3.0</name>

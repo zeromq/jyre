@@ -37,3 +37,5 @@ zyre_perf_local
 zyre_perf_remote
 zyre_selftest
 doit
+target/
+.idea/

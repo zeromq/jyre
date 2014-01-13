@@ -3,7 +3,7 @@
 echo "Generate ZYRE codes use JeroMQ"
 
 TARGET="jeromq"
-JZMQ_VERSION="1.1.0-SNAPSHOT"
+JZMQ_VERSION="2.2.3-SNAPSHOT"
 JEROMQ_VERSION="0.3.0-SNAPSHOT"
 
 if [ ! -d $TARGET ]; then

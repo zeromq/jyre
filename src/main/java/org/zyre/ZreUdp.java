@@ -32,6 +32,7 @@ import java.net.InetAddress;
 import java.net.InetSocketAddress;
 import java.net.NetworkInterface;
 import java.net.SocketAddress;
+import java.net.Inet4Address;
 import java.nio.ByteBuffer;
 import java.nio.channels.DatagramChannel;
 import java.util.Collections;
@@ -73,7 +74,8 @@ public class ZreUdp
                 
                 Enumeration <InetAddress> inetAddresses = netint.getInetAddresses ();
                 for (InetAddress addr : Collections.list (inetAddresses)) {
-                    address = addr;
+                    if (addr instanceof Inet4Address)
+                        address = addr;
                 }
             }
             host = address.getHostAddress ();

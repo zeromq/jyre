@@ -43,7 +43,7 @@ public class ZreGroup
     
     //  ---------------------------------------------------------------------
     //  Destroy group object
-    public void destory ()
+    public void destroy ()
     {
     }
     

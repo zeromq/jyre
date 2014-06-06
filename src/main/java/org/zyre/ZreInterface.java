@@ -289,7 +289,7 @@ public class ZreInterface
             return new Agent (ctx, pipe, inbox, udp, port);
         }
         
-        protected void destory () 
+        protected void destroy () 
         {
             FmqDir inbox = FmqDir.newFmqDir (fmq_inbox, null);
             if (inbox != null) {
@@ -304,16 +304,16 @@ public class ZreInterface
             }
             
             for (ZrePeer peer : peers.values ())
-                peer.destory ();
+                peer.destroy ();
             for (ZreGroup group : peer_groups.values ())
-                group.destory ();
+                group.destroy ();
             for (ZreGroup group : own_groups.values ())
-                group.destory ();
+                group.destroy ();
             
             fmq_server.destroy ();
             fmq_client.destroy ();
             udp.destroy ();
-            log.destory ();
+            log.destroy ();
             
         }
         
@@ -636,7 +636,7 @@ public class ZreInterface
                     pipe.send (identity);
                     deletePeerFromGroups (peer_groups, peer);
                     it.remove ();
-                    peer.destory ();
+                    peer.destroy ();
                 } 
                 else 
                 if (System.currentTimeMillis () >= peer.evasiveAt ()){
@@ -721,7 +721,7 @@ public class ZreInterface
                     agent.pingAllPeers ();
                 }
             }
-            agent.destory ();
+            agent.destroy ();
         }
     }
 }

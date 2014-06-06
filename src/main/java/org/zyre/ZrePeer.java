@@ -73,7 +73,7 @@ public class ZrePeer
     
     //  ---------------------------------------------------------------------
     //  Destroy peer object
-    public void destory ()
+    public void destroy ()
     {
         disconnect ();
     }

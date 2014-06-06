@@ -48,7 +48,7 @@ public class ZreLog
 
     //  ---------------------------------------------------------------------
     //  Destroy log object
-    public void destory ()
+    public void destroy ()
     {
         ctx.destroy ();
     }

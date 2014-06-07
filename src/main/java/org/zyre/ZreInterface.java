@@ -383,7 +383,7 @@ public class ZreInterface
             
             //  Now tell the caller about the peer joined a group
             pipe.sendMore ("JOIN");
-            pipe.sendMore (identity);
+            pipe.sendMore (peer.identity());
             pipe.send (name);
             
             return group;
@@ -396,7 +396,7 @@ public class ZreInterface
             
             //  Now tell the caller about the peer joined a group
             pipe.sendMore ("LEAVE");
-            pipe.sendMore (identity);
+            pipe.sendMore (peer.identity());
             pipe.send (name);
             
             return group;

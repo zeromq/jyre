@@ -91,6 +91,8 @@ public class ZreLogMsg
         if (address != null)
             address.destroy ();
         address = null;
+
+        //  Destroy frame fields
     }
 
 
@@ -319,7 +321,7 @@ public class ZreLogMsg
         //  If we're sending to a ROUTER, we send the address first
         if (socket.getType () == ZMQ.ROUTER) {
             assert (address != null);
-            if (!address.sendAndDestroy (socket, ZMQ.SNDMORE)) {
+            if (!address.send (socket, ZMQ.SNDMORE)) {
                 destroy ();
                 return false;
             }

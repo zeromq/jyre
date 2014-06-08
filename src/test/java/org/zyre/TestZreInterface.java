@@ -71,16 +71,20 @@ public class TestZreInterface
                 }
                 else 
                 if (event.equals ("SHOUT")) {
+                    String identity = incoming.popString ();
                     incoming.popString ();
-                    String group = incoming.popString ();
                     String msg = incoming.popString ();
                     
-                    assertEquals ("HELLO", msg);
+                    if (msg.equals ("HELLO")) {
+	                    ZMsg outgoing = new ZMsg ();
+	                    outgoing.add (identity);
+	                    outgoing.add ("WORLD");
+	                    inf.whisper (outgoing);
+                    }
                     
-                    ZMsg outgoing = new ZMsg ();
-                    outgoing.add (group);
-                    outgoing.add ("WORLD");
-                    inf.shout (outgoing);
+                    if (msg.equals ("QUIT")) {
+                        break;
+                    }
                 }
                 else
                 if (event.equals ("JOIN")) {
@@ -166,13 +170,12 @@ public class TestZreInterface
         
         incoming = inf.recv ();
         event = incoming.popString ();
-        assertEquals ("SHOUT", event);
+        assertEquals ("WHISPER", event);
         assertEquals (peer, incoming.popString ());
-        assertEquals (group, incoming.popString ());
         assertEquals ("WORLD", incoming.popString ());
         
         inf.leave (group);
-        
+
         incoming = inf.recv ();
         event = incoming.popString ();
         assertEquals ("LEAVE", event);
@@ -183,6 +186,46 @@ public class TestZreInterface
         inf.whisper (outgoing);
         
         ping.join ();
+        inf.destroy ();
+    }
+    
+    @Test
+    public void 
+    testInterfaceShout () throws Exception
+    {
+        String group = "TEST";
+        
+        ZrePing ping = new ZrePing ();
+        ping.start ();
+        
+        ZrePing ping2 = new ZrePing ();
+        ping2.start ();
+
+        ZreInterface inf = new ZreInterface ();
+        
+        assertEquals ("ENTER", inf.recv ().popString ());
+        assertEquals ("ENTER", inf.recv ().popString ());
+        
+        inf.join (group);
+        
+        assertEquals ("JOIN", inf.recv ().popString ());
+        assertEquals ("JOIN", inf.recv ().popString ());
+
+        ZMsg outgoing = new ZMsg();
+        outgoing.add (group);
+        outgoing.add ("HELLO");
+        inf.shout (outgoing);
+        
+        assertEquals ("WHISPER", inf.recv ().popString ());
+        assertEquals ("WHISPER", inf.recv ().popString ());
+
+        outgoing = new ZMsg();
+        outgoing.add (group);
+        outgoing.add ("QUIT");
+        inf.shout (outgoing);
+        
+        ping.join ();
+        ping2.join ();
         inf.destroy ();
     }
     

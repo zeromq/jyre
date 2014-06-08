@@ -112,6 +112,10 @@ public class ZreMsg
         if (address != null)
             address.destroy ();
         address = null;
+
+        //  Destroy frame fields
+        if (content != null)
+            content.destroy ();
     }
 
 
@@ -515,7 +519,7 @@ public class ZreMsg
         //  If we're sending to a ROUTER, we send the address first
         if (socket.getType () == ZMQ.ROUTER) {
             assert (address != null);
-            if (!address.sendAndDestroy (socket, ZMQ.SNDMORE)) {
+            if (!address.send (socket, ZMQ.SNDMORE)) {
                 destroy ();
                 return false;
             }
@@ -533,7 +537,7 @@ public class ZreMsg
             //  If content isn't set, send an empty frame
             if (content == null)
                 content = new ZFrame ("".getBytes ());
-            if (!content.sendAndDestroy (socket, 0)) {
+            if (!content.send (socket, 0)) {
                 frame.destroy ();
                 destroy ();
                 return false;
@@ -543,7 +547,7 @@ public class ZreMsg
             //  If content isn't set, send an empty frame
             if (content == null)
                 content = new ZFrame ("".getBytes ());
-            if (!content.sendAndDestroy (socket, 0)) {
+            if (!content.send (socket, 0)) {
                 frame.destroy ();
                 destroy ();
                 return false;

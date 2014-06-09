@@ -116,6 +116,7 @@ public class ZreMsg
         //  Destroy frame fields
         if (content != null)
             content.destroy ();
+        content = null;
     }
 
 

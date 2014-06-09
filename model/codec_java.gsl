@@ -140,6 +140,7 @@ public class $(ClassName)
 .for field where type = "frame"
         if ($(field.name) != null)
             $(field.name).destroy ();
+        $(field.name) = null;
 .endfor
     }
 

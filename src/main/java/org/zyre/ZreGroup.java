@@ -80,7 +80,7 @@ public class ZreGroup
     public void send (ZreMsg msg)
     {
         for (ZrePeer peer: peers.values ())
-            peer.send (msg);
+            peer.send (msg.dup (msg));
         
         msg.destroy ();
     }

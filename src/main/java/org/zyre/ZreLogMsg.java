@@ -368,22 +368,19 @@ public class ZreLogMsg
     //  --------------------------------------------------------------------------
     //  Duplicate the ZreLogMsg message
 
-    public ZreLogMsg dup (ZreLogMsg self)
+    public ZreLogMsg dup ()
     {
-        if (self == null)
-            return null;
-
-        ZreLogMsg copy = new ZreLogMsg (self.id);
-        if (self.address != null)
-            copy.address = self.address.duplicate ();
-        switch (self.id) {
+        ZreLogMsg copy = new ZreLogMsg (this.id);
+        if (this.address != null)
+            copy.address = this.address.duplicate ();
+        switch (this.id) {
         case LOG:
-            copy.level = self.level;
-            copy.event = self.event;
-            copy.node = self.node;
-            copy.peer = self.peer;
-            copy.time = self.time;
-            copy.data = self.data;
+            copy.level = this.level;
+            copy.event = this.event;
+            copy.node = this.node;
+            copy.peer = this.peer;
+            copy.time = this.time;
+            copy.data = this.data;
         break;
         }
         return copy;

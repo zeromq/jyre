@@ -564,30 +564,27 @@ public class $(ClassName)
     //  --------------------------------------------------------------------------
     //  Duplicate the $(ClassName) message
 
-    public $(ClassName) dup ($(ClassName) self)
+    public $(ClassName) dup ()
     {
-        if (self == null)
-            return null;
-
-        $(ClassName) copy = new $(ClassName) (self.id);
-        if (self.address != null)
-            copy.address = self.address.duplicate ();
-        switch (self.id) {
+        $(ClassName) copy = new $(ClassName) (this.id);
+        if (this.address != null)
+            copy.address = this.address.duplicate ();
+        switch (this.id) {
 .for class.message
         case $(MESSAGE.NAME):
 .   for field
 .       if type = "number"
-            copy.$(name) = self.$(name);
+            copy.$(name) = this.$(name);
 .       elsif type = "octets"
-            System.arraycopy (copy.$(name), 0, self.$(name), 0, $(size));
+            System.arraycopy (copy.$(name), 0, this.$(name), 0, $(size));
 .       elsif type = "string"
-            copy.$(name) = self.$(name);
+            copy.$(name) = this.$(name);
 .       elsif type = "strings"
-            copy.$(name) = new ArrayList <String> (self.$(name));
+            copy.$(name) = new ArrayList <String> (this.$(name));
 .       elsif type = "dictionary"
-            copy.$(name) = new HashMap <String, String> (self.$(name));
+            copy.$(name) = new HashMap <String, String> (this.$(name));
 .       elsif type = "frame"
-            copy.$(name) = self.$(name).duplicate ();
+            copy.$(name) = this.$(name).duplicate ();
 .       endif
 .   endfor
         break;

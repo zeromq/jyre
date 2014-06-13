@@ -673,47 +673,44 @@ public class ZreMsg
     //  --------------------------------------------------------------------------
     //  Duplicate the ZreMsg message
 
-    public ZreMsg dup (ZreMsg self)
+    public ZreMsg dup ()
     {
-        if (self == null)
-            return null;
-
-        ZreMsg copy = new ZreMsg (self.id);
-        if (self.address != null)
-            copy.address = self.address.duplicate ();
-        switch (self.id) {
+        ZreMsg copy = new ZreMsg (this.id);
+        if (this.address != null)
+            copy.address = this.address.duplicate ();
+        switch (this.id) {
         case HELLO:
-            copy.sequence = self.sequence;
-            copy.ipaddress = self.ipaddress;
-            copy.mailbox = self.mailbox;
-            copy.groups = new ArrayList <String> (self.groups);
-            copy.status = self.status;
-            copy.headers = new HashMap <String, String> (self.headers);
+            copy.sequence = this.sequence;
+            copy.ipaddress = this.ipaddress;
+            copy.mailbox = this.mailbox;
+            copy.groups = new ArrayList <String> (this.groups);
+            copy.status = this.status;
+            copy.headers = new HashMap <String, String> (this.headers);
         break;
         case WHISPER:
-            copy.sequence = self.sequence;
-            copy.content = self.content.duplicate ();
+            copy.sequence = this.sequence;
+            copy.content = this.content.duplicate ();
         break;
         case SHOUT:
-            copy.sequence = self.sequence;
-            copy.group = self.group;
-            copy.content = self.content.duplicate ();
+            copy.sequence = this.sequence;
+            copy.group = this.group;
+            copy.content = this.content.duplicate ();
         break;
         case JOIN:
-            copy.sequence = self.sequence;
-            copy.group = self.group;
-            copy.status = self.status;
+            copy.sequence = this.sequence;
+            copy.group = this.group;
+            copy.status = this.status;
         break;
         case LEAVE:
-            copy.sequence = self.sequence;
-            copy.group = self.group;
-            copy.status = self.status;
+            copy.sequence = this.sequence;
+            copy.group = this.group;
+            copy.status = this.status;
         break;
         case PING:
-            copy.sequence = self.sequence;
+            copy.sequence = this.sequence;
         break;
         case PING_OK:
-            copy.sequence = self.sequence;
+            copy.sequence = this.sequence;
         break;
         }
         return copy;

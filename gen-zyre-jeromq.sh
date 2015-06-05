@@ -3,7 +3,7 @@
 echo "Generate ZYRE codes use JeroMQ"
 
 TARGET="zyre-jeromq"
-JZMQ_VERSION="2.2.3-SNAPSHOT"
+JZMQ_VERSION="3.1.0"
 JEROMQ_VERSION="0.3.5-SNAPSHOT"
 
 if [ ! -d $TARGET ]; then
@@ -13,10 +13,8 @@ fi
 sed -e '
 s/<artifactId>zyre<\/artifactId>/<artifactId>zyre-jeromq<\/artifactId>/
 s/<name>zyre<\/name>/<name>zyre-jeromq<\/name>/
-s/<artifactId>filemq<\/artifactId>/<artifactId>filemq-jeromq<\/artifactId>/
 /<dependency>/,/<\/depencency>/ {
     /<groupId>org.zeromq<\/groupId>/,/<version>${JZMQ_VERSION}<\/version>/ { 
-        s/zeromq/jeromq/
         s/jzmq/jeromq/
         s/'"${JZMQ_VERSION}"'/'"${JEROMQ_VERSION}"'/
     }
@@ -27,13 +25,7 @@ for j in `find ./src -name "*.java"`; do
     FILE=${j##.*/}
     BASE=$TARGET/${BASE%/$FILE}
     mkdir -p $BASE
-    sed -e '
-    s/org.zeromq.ZMQ/org.jeromq.ZMQ/g
-    s/org.zeromq.ZContext/org.jeromq.ZContext/g
-    s/org.zeromq.ZFrame/org.jeromq.ZFrame/g
-    s/org.zeromq.ZMsg/org.jeromq.ZMsg/g
-    s/org.zeromq.ZThread/org.jeromq.ZThread/g
-    ' $j > $BASE/$FILE
+    cat $j > $BASE/$FILE
 done
 
 echo "Done"

@@ -45,3 +45,4 @@ target
 .project
 .metadata
 .wtpmodules
+bin/

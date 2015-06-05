@@ -2,9 +2,9 @@
 
 echo "Generate ZYRE codes use JeroMQ"
 
-TARGET="jeromq"
+TARGET="zyre-jeromq"
 JZMQ_VERSION="2.2.3-SNAPSHOT"
-JEROMQ_VERSION="0.3.0-SNAPSHOT"
+JEROMQ_VERSION="0.3.5-SNAPSHOT"
 
 if [ ! -d $TARGET ]; then
     mkdir $TARGET

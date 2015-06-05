@@ -63,6 +63,13 @@
           </execution>
         </executions>
       </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-surefire-plugin</artifactId>
+        <configuration>
+          <argLine>-Djava.library.path=${native.library.path}</argLine>
+        </configuration>
+      </plugin>
     </plugins>
   </build>
   <profiles>
@@ -92,6 +99,18 @@
           </plugin>
         </plugins>
       </build>
+    </profile>
+    <!-- TODO: add native lib path for other OSes -->
+    <profile>
+      <id>OSX</id>
+        <activation>
+          <os>
+            <family>mac</family>
+          </os>
+        </activation>
+        <properties>
+          <native.library.path>/usr/local/lib</native.library.path>
+        </properties>
     </profile>
   </profiles>
   <distributionManagement>

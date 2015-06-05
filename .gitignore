@@ -41,3 +41,7 @@ jeromq
 target
 .idea
 *.iml
+.classpath
+.project
+.metadata
+.wtpmodules

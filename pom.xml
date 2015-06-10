@@ -67,6 +67,8 @@
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-surefire-plugin</artifactId>
         <configuration>
+          <!-- Native library path for linking with jzmq is pulled from an
+               OS-specific location, defined in profiles section below -->
           <argLine>-Djava.library.path=${native.library.path}</argLine>
         </configuration>
       </plugin>

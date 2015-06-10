@@ -621,7 +621,6 @@ public class ZreInterface
             items.register (agent.pipe, Poller.POLLIN);
             items.register (agent.inbox, Poller.POLLIN);
             items.register (agent.udp.handle (), Poller.POLLIN);
-            //items.register (agent.fmq_client.handle (), Poller.POLLIN);
             
             while (!Thread.currentThread ().isInterrupted ()) {
                 long timeout = pingAt - System.currentTimeMillis ();

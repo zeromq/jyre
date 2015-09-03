@@ -472,7 +472,7 @@ public class ZreInterface
                 ZFrame cookie = msg.content ();
                 pipe.sendMore ("WHISPER");
                 pipe.sendMore (identity);
-                cookie.sendAndKeep (pipe); // let msg free the frame
+                cookie.send (pipe, 0); // let msg free the frame
             }
             else
             if (msg.id () == ZreMsg.SHOUT) {
@@ -481,7 +481,7 @@ public class ZreInterface
                 pipe.sendMore ("SHOUT");
                 pipe.sendMore (identity);
                 pipe.sendMore (msg.group ());
-                cookie.sendAndKeep (pipe); // let msg free the frame
+                cookie.send (pipe, 0); // let msg free the frame
             }
             else
             if (msg.id () == ZreMsg.PING) {

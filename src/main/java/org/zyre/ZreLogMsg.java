@@ -327,7 +327,7 @@ public class ZreLogMsg
             }
         }
         //  Now send the data frame
-        if (!frame.sendAndDestroy (socket, frameFlags)) {
+        if (!frame.send (socket, frameFlags)) {
             frame.destroy ();
             destroy ();
             return false;

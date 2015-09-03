@@ -26,7 +26,6 @@
 
 package org.zyre;
 
-import java.io.File;
 import java.io.IOException;
 import java.nio.ByteBuffer;
 import java.util.HashMap;
@@ -34,12 +33,6 @@ import java.util.Iterator;
 import java.util.Map;
 import java.util.UUID;
 
-/*
-import org.filemq.FmqClient;
-import org.filemq.FmqDir;
-import org.filemq.FmqFile;
-import org.filemq.FmqServer;
-*/
 import org.zeromq.ZContext;
 import org.zeromq.ZFrame;
 import org.zeromq.ZMQ;
